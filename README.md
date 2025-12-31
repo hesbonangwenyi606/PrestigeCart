@@ -78,3 +78,4 @@ git clone <your-repo-url>
 cd PrestigeCart
 
 ## Install dependencies:
+npm install
