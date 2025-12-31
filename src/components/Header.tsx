@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ searchQuery, setSearchQuery }) => {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         {/* Top Banner */}
         <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white text-center py-2 text-sm">
-          <span className="font-medium">New Year Sale!</span> Use code <span className="font-bold">NEWYEAR25</span> for 25% off
+          <span className="font-medium">New Year Sale!</span> Use code <span className="font-bold">NEWYEAR26</span> for 25% off
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
