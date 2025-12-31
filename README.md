@@ -119,3 +119,7 @@ Add user profile management
 Fetch dynamic product data from Supabase
 
 Improve SEO and performance optimizations
+
+License
+
+This project is open-source and available under the MIT License.
