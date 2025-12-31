@@ -66,3 +66,13 @@ src/
 │ ├─ Index.tsx
 │ ├─ NotFound.tsx
 ├─ App.tsx
+
+
+---
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd PrestigeCart
