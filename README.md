@@ -44,4 +44,25 @@
 ---
 
 ## Project Structure
-
+src/
+├─ components/
+│ ├─ AppLayout.tsx
+│ ├─ Header.tsx
+│ ├─ HeroSection.tsx
+│ ├─ CategorySection.tsx
+│ ├─ ProductGrid.tsx
+│ ├─ ProductCard.tsx
+│ ├─ DealsSection.tsx
+│ ├─ Footer.tsx
+│ ├─ AuthModal.tsx
+├─ contexts/
+│ ├─ AuthContext.tsx
+│ ├─ CartContext.tsx
+├─ data/
+│ ├─ products.ts
+├─ lib/
+│ ├─ supabase.ts
+├─ pages/
+│ ├─ Index.tsx
+│ ├─ NotFound.tsx
+├─ App.tsx
