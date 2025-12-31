@@ -1,218 +1,269 @@
-import React, { useState } from 'react';
-import { Heart, ShoppingCart, Star, Eye } from 'lucide-react';
-import { useCart } from '@/contexts/CartContext';
-import type { Product } from '@/data/products';
-
-interface ProductCardProps {
-  product: Product;
+// src/data/products.ts
+export interface Product {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  originalPrice?: number;
+  rating: number;
+  reviews: number;
+  image: string;
+  badge?: 'Sale' | 'New' | 'Best Seller' | 'Trending';
+  description?: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [isWishlisted, setIsWishlisted] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [showQuickView, setShowQuickView] = useState(false);
-  const { addToCart } = useCart();
-
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      category: product.category,
-    });
-  };
-
-  const handleWishlist = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsWishlisted(!isWishlisted);
-  };
-
-  const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-    : 0;
-
-  return (
-    <>
-      <div
-        className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Image Container */}
-        <div className="relative aspect-square overflow-hidden bg-gray-50">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          
-          {/* Badge */}
-          {product.badge && (
-            <span className={`absolute top-3 left-3 px-3 py-1 text-xs font-semibold rounded-full ${
-              product.badge === 'Sale' ? 'bg-red-500 text-white' :
-              product.badge === 'New' ? 'bg-green-500 text-white' :
-              product.badge === 'Best Seller' ? 'bg-purple-600 text-white' :
-              product.badge === 'Trending' ? 'bg-orange-500 text-white' :
-              'bg-gray-900 text-white'
-            }`}>
-              {product.badge}
-            </span>
-          )}
-
-          {/* Discount Badge */}
-          {discount > 0 && (
-            <span className="absolute top-3 right-3 px-2 py-1 text-xs font-bold bg-red-500 text-white rounded-full">
-              -{discount}%
-            </span>
-          )}
-
-          {/* Hover Actions */}
-          <div className={`absolute inset-0 bg-black/20 flex items-center justify-center gap-3 transition-opacity duration-300 ${
-            isHovered ? 'opacity-100' : 'opacity-0'
-          }`}>
-            <button
-              onClick={handleWishlist}
-              className={`p-3 rounded-full transition-all duration-200 ${
-                isWishlisted
-                  ? 'bg-red-500 text-white'
-                  : 'bg-white text-gray-700 hover:bg-red-500 hover:text-white'
-              }`}
-            >
-              <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />
-            </button>
-            <button
-              onClick={() => setShowQuickView(true)}
-              className="p-3 bg-white text-gray-700 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-200"
-            >
-              <Eye className="w-5 h-5" />
-            </button>
-            <button
-              onClick={handleAddToCart}
-              className="p-3 bg-white text-gray-700 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-200"
-            >
-              <ShoppingCart className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-4">
-          <p className="text-xs text-purple-600 font-medium mb-1">{product.category}</p>
-          <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-purple-600 transition-colors">
-            {product.name}
-          </h3>
-          
-          {/* Rating */}
-          <div className="flex items-center gap-1 mb-3">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`w-4 h-4 ${
-                    i < Math.floor(product.rating)
-                      ? 'text-yellow-400 fill-current'
-                      : 'text-gray-300'
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-sm text-gray-500">({product.reviews})</span>
-          </div>
-
-          {/* Price */}
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-gray-900">${product.price.toFixed(2)}</span>
-            {product.originalPrice && (
-              <span className="text-sm text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>
-            )}
-          </div>
-
-          {/* Add to Cart Button */}
-          <button
-            onClick={handleAddToCart}
-            className="mt-4 w-full py-2.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-purple-600 transition-colors flex items-center justify-center gap-2"
-          >
-            <ShoppingCart className="w-4 h-4" />
-            Add to Cart
-          </button>
-        </div>
-      </div>
-
-      {/* Quick View Modal */}
-      {showQuickView && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowQuickView(false)}>
-          <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative" onClick={e => e.stopPropagation()}>
-            <button
-              onClick={() => setShowQuickView(false)}
-              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 z-10"
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <div className="grid md:grid-cols-2 gap-6 p-6">
-              <div className="aspect-square rounded-xl overflow-hidden bg-gray-50">
-                <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="flex flex-col">
-                <p className="text-sm text-purple-600 font-medium">{product.category}</p>
-                <h2 className="text-2xl font-bold text-gray-900 mt-1">{product.name}</h2>
-                
-                <div className="flex items-center gap-2 mt-3">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-5 h-5 ${
-                          i < Math.floor(product.rating)
-                            ? 'text-yellow-400 fill-current'
-                            : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-gray-500">({product.reviews} reviews)</span>
-                </div>
-
-                <div className="flex items-center gap-3 mt-4">
-                  <span className="text-3xl font-bold text-gray-900">${product.price.toFixed(2)}</span>
-                  {product.originalPrice && (
-                    <span className="text-xl text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>
-                  )}
-                </div>
-
-                <p className="text-gray-600 mt-4">{product.description}</p>
-
-                <div className="mt-auto pt-6 space-y-3">
-                  <button
-                    onClick={handleAddToCart}
-                    className="w-full py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2"
-                  >
-                    <ShoppingCart className="w-5 h-5" />
-                    Add to Cart
-                  </button>
-                  <button
-                    onClick={handleWishlist}
-                    className={`w-full py-3 border-2 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 ${
-                      isWishlisted
-                        ? 'border-red-500 text-red-500 bg-red-50'
-                        : 'border-gray-300 text-gray-700 hover:border-red-500 hover:text-red-500'
-                    }`}
-                  >
-                    <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />
-                    {isWishlisted ? 'In Wishlist' : 'Add to Wishlist'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-    </>
-  );
-};
-
-export default ProductCard;
+export const products: Product[] = [
+  {
+    id: 1,
+    name: 'Wireless Bluetooth Headphones',
+    category: 'Electronics',
+    price: 59.99,
+    originalPrice: 79.99,
+    rating: 4.5,
+    reviews: 120,
+    image: '/images/products/headphones.jpg',
+    badge: 'Sale',
+    description: 'High-quality wireless headphones with noise cancellation and long battery life.',
+  },
+  {
+    id: 2,
+    name: 'Smartwatch Fitness Tracker',
+    category: 'Electronics',
+    price: 129.99,
+    originalPrice: 149.99,
+    rating: 4.0,
+    reviews: 80,
+    image: '/images/products/smartwatch.jpg',
+    badge: 'New',
+    description: 'Track your fitness, heart rate, and notifications with this sleek smartwatch.',
+  },
+  {
+    id: 3,
+    name: 'Leather Sneakers',
+    category: 'Footwear',
+    price: 79.99,
+    originalPrice: 99.99,
+    rating: 4.7,
+    reviews: 200,
+    image: '/images/products/sneakers.jpg',
+    badge: 'Best Seller',
+    description: 'Comfortable and stylish leather sneakers perfect for everyday wear.',
+  },
+  {
+    id: 4,
+    name: 'Men’s Casual Jacket',
+    category: 'Fashion',
+    price: 89.99,
+    rating: 4.3,
+    reviews: 60,
+    image: '/images/products/jacket.jpg',
+    badge: 'Trending',
+    description: 'Lightweight, versatile jacket ideal for casual outings and travel.',
+  },
+  {
+    id: 5,
+    name: 'Gaming Mouse RGB',
+    category: 'Electronics',
+    price: 49.99,
+    originalPrice: 59.99,
+    rating: 4.6,
+    reviews: 150,
+    image: '/images/products/mouse.jpg',
+    badge: 'Sale',
+    description: 'Ergonomic gaming mouse with customizable RGB lighting and programmable buttons.',
+  },
+  {
+    id: 6,
+    name: 'Women’s Handbag',
+    category: 'Fashion',
+    price: 69.99,
+    rating: 4.2,
+    reviews: 90,
+    image: '/images/products/handbag.jpg',
+    badge: 'New',
+    description: 'Elegant handbag made of premium materials, perfect for any occasion.',
+  },
+  {
+    id: 7,
+    name: 'Wireless Earbuds',
+    category: 'Electronics',
+    price: 39.99,
+    originalPrice: 59.99,
+    rating: 4.4,
+    reviews: 180,
+    image: '/images/products/earbuds.jpg',
+    badge: 'Sale',
+    description: 'Compact earbuds with superior sound quality and long battery life.',
+  },
+  {
+    id: 8,
+    name: 'Yoga Mat Non-Slip',
+    category: 'Sports',
+    price: 29.99,
+    rating: 4.8,
+    reviews: 220,
+    image: '/images/products/yogamat.jpg',
+    badge: 'Best Seller',
+    description: 'Durable and non-slip yoga mat for all types of exercises and stretches.',
+  },
+  {
+    id: 9,
+    name: 'Coffee Maker Automatic',
+    category: 'Home Appliances',
+    price: 99.99,
+    originalPrice: 129.99,
+    rating: 4.5,
+    reviews: 75,
+    image: '/images/products/coffeemaker.jpg',
+    badge: 'New',
+    description: 'Brew delicious coffee quickly with this automatic coffee maker.',
+  },
+  {
+    id: 10,
+    name: 'LED Desk Lamp',
+    category: 'Home',
+    price: 24.99,
+    rating: 4.6,
+    reviews: 130,
+    image: '/images/products/desklamp.jpg',
+    badge: 'Trending',
+    description: 'Adjustable LED desk lamp with brightness control and sleek design.',
+  },
+  {
+    id: 11,
+    name: 'Bluetooth Speaker',
+    category: 'Electronics',
+    price: 59.99,
+    originalPrice: 79.99,
+    rating: 4.7,
+    reviews: 200,
+    image: '/images/products/speaker.jpg',
+    badge: 'Best Seller',
+    description: 'Portable Bluetooth speaker with rich sound and long battery life.',
+  },
+  {
+    id: 12,
+    name: 'Women’s Running Shoes',
+    category: 'Footwear',
+    price: 89.99,
+    originalPrice: 109.99,
+    rating: 4.4,
+    reviews: 95,
+    image: '/images/products/womenshoes.jpg',
+    badge: 'Sale',
+    description: 'Lightweight running shoes designed for comfort and performance.',
+  },
+  {
+    id: 13,
+    name: 'Men’s Leather Belt',
+    category: 'Fashion',
+    price: 29.99,
+    rating: 4.3,
+    reviews: 50,
+    image: '/images/products/belt.jpg',
+    badge: 'New',
+    description: 'Classic leather belt that complements casual and formal outfits.',
+  },
+  {
+    id: 14,
+    name: 'Electric Kettle',
+    category: 'Home Appliances',
+    price: 34.99,
+    rating: 4.5,
+    reviews: 110,
+    image: '/images/products/kettle.jpg',
+    badge: 'Trending',
+    description: 'Fast-boiling electric kettle with auto shut-off feature.',
+  },
+  {
+    id: 15,
+    name: 'Laptop Backpack',
+    category: 'Accessories',
+    price: 59.99,
+    originalPrice: 79.99,
+    rating: 4.6,
+    reviews: 140,
+    image: '/images/products/backpack.jpg',
+    badge: 'Best Seller',
+    description: 'Durable backpack with padded laptop compartment and multiple pockets.',
+  },
+  {
+    id: 16,
+    name: 'Portable Power Bank',
+    category: 'Electronics',
+    price: 29.99,
+    rating: 4.7,
+    reviews: 180,
+    image: '/images/products/powerbank.jpg',
+    badge: 'Sale',
+    description: 'High-capacity power bank to charge devices on the go.',
+  },
+  {
+    id: 17,
+    name: 'Sunglasses UV Protection',
+    category: 'Fashion',
+    price: 19.99,
+    rating: 4.2,
+    reviews: 60,
+    image: '/images/products/sunglasses.jpg',
+    badge: 'New',
+    description: 'Stylish sunglasses with 100% UV protection.',
+  },
+  {
+    id: 18,
+    name: 'Camping Tent 4-Person',
+    category: 'Sports',
+    price: 129.99,
+    rating: 4.5,
+    reviews: 70,
+    image: '/images/products/tent.jpg',
+    badge: 'Trending',
+    description: 'Easy-to-set-up 4-person camping tent, waterproof and durable.',
+  },
+  {
+    id: 19,
+    name: 'Fitness Dumbbell Set',
+    category: 'Sports',
+    price: 79.99,
+    rating: 4.8,
+    reviews: 120,
+    image: '/images/products/dumbbell.jpg',
+    badge: 'Best Seller',
+    description: 'Adjustable dumbbell set perfect for home workouts.',
+  },
+  {
+    id: 20,
+    name: 'Women’s Casual T-Shirt',
+    category: 'Fashion',
+    price: 24.99,
+    rating: 4.3,
+    reviews: 90,
+    image: '/images/products/tshirt.jpg',
+    badge: 'New',
+    description: 'Soft cotton casual T-shirt in multiple colors.',
+  },
+  {
+    id: 21,
+    name: 'Electric Toothbrush',
+    category: 'Home Appliances',
+    price: 39.99,
+    originalPrice: 49.99,
+    rating: 4.5,
+    reviews: 80,
+    image: '/images/products/toothbrush.jpg',
+    badge: 'Sale',
+    description: 'Rechargeable electric toothbrush with multiple cleaning modes.',
+  },
+  {
+    id: 22,
+    name: 'Gaming Keyboard RGB',
+    category: 'Electronics',
+    price: 79.99,
+    originalPrice: 99.99,
+    rating: 4.6,
+    reviews: 150,
+    image: '/images/products/keyboard.jpg',
+    badge: 'Best Seller',
+    description: 'Mechanical keyboard with customizable RGB lighting and fast response.',
+  },
+];
