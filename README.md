@@ -65,7 +65,8 @@ src/
 
 ## Installation
 **Clone the repository:**
-```bash
+```bash 
+
 git clone <your-repo-url>
 cd PrestigeCart
 
@@ -97,5 +98,5 @@ Add user profile management
 Fetch dynamic product data from Supabase
 Improve SEO and performance optimizations
 
-License
+## License
 This project is open-source and available under the MIT License.
