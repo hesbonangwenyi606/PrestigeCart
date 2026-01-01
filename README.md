@@ -113,7 +113,6 @@ Future Improvements
 Add checkout and payment integration
 
 Implement order history for users
-
 Add user profile management
 Fetch dynamic product data from Supabase
 Improve SEO and performance optimizations
