@@ -17,7 +17,7 @@
 - Add, remove, and update products in the cart
 - Cart dropdown accessible from header
 
-### Sections
+**Sections**
 - **Hero Section** with banner and key features
 - **Category Section** with category cards and promotions
 - **Deals Section** with countdown timers for sales
