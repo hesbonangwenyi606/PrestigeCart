@@ -96,8 +96,7 @@ npm run dev
 
 Open http://localhost:8080
 
-Usage
-
+## Usage
 Users can sign up or sign in using the auth modal.
 Browse products on the homepage and add items to the cart.
 Filter products by categories and sort by price or popularity.
