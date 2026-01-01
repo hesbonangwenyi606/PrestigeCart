@@ -23,7 +23,7 @@
 - **Deals Section** with countdown timers for sales
 - **Footer** with newsletter, links, and contact info
 
-### Responsive Design
+**Responsive Design**
 - Mobile-first design
 - Clean and modern user interface
 
