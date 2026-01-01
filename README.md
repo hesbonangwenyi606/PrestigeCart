@@ -99,7 +99,6 @@ Open http://localhost:8080
 Usage
 
 Users can sign up or sign in using the auth modal.
-
 Browse products on the homepage and add items to the cart.
 Filter products by categories and sort by price or popularity.
 Check out deals in the Deals Section with countdown timers.
