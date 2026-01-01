@@ -92,8 +92,6 @@ VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 un the development server:
 
 npm run dev
-
-
 Open http://localhost:8080
 
 ## Usage
