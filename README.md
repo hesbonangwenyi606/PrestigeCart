@@ -30,7 +30,6 @@
 ---
 
 ## Tech Stack
-
 - **Frontend:** React, TypeScript, Vite
 - **Backend:** Supabase (Authentication & Database)
 - **State Management:** React Context (Auth & Cart)
