@@ -1,8 +1,6 @@
 # PrestigeCart
 **PrestigeCart** is a modern online shopping platform built with **React**, **TypeScript**, and **Vite**. It features user authentication, product browsing, shopping cart functionality, and a responsive, clean UI. Authentication is handled using **Supabase Auth**, and the app uses **React Context** for managing user and cart state.
 
----
-
 ## Features
 
 ### User Authentication
