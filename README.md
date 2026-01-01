@@ -103,7 +103,6 @@ Users can sign up or sign in using the auth modal.
 Browse products on the homepage and add items to the cart.
 
 Filter products by categories and sort by price or popularity.
-
 Check out deals in the Deals Section with countdown timers.
 Header contains navigation, search, cart, and user menu options.
 
