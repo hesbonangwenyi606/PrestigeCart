@@ -27,16 +27,12 @@
 - Mobile-first design
 - Clean and modern user interface
 
----
-
 ## Tech Stack
 - **Frontend:** React, TypeScript, Vite
 - **Backend:** Supabase (Authentication & Database)
 - **State Management:** React Context (Auth & Cart)
 - **Styling:** Tailwind CSS
 - **Routing:** React Router
-
----
 
 ## Project Structure
 src/
