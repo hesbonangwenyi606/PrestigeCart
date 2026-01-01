@@ -111,7 +111,6 @@ Header contains navigation, search, cart, and user menu options.
 Future Improvements
 
 Add checkout and payment integration
-
 Implement order history for users
 Add user profile management
 Fetch dynamic product data from Supabase
