@@ -71,7 +71,6 @@ src/
 ---
 
 ## Installation
-
 **Clone the repository:**
 ```bash
 git clone <your-repo-url>
