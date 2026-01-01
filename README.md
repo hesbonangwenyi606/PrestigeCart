@@ -68,8 +68,6 @@ src/
 ├─ App.tsx
 
 
----
-
 ## Installation
 **Clone the repository:**
 ```bash
