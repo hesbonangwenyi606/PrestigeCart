@@ -7,7 +7,7 @@
 - Authentication state managed with `AuthContext`
 - Sign in / Sign up handled via modal for seamless experience
 
-### Product Browsing
+**Product Browsing**
 - Display 12+ products in a responsive **product grid**
 - Filtering, sorting, and search functionality
 - Product cards with wishlist, quick view, and add-to-cart options
