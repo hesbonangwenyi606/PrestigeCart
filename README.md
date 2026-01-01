@@ -109,7 +109,6 @@ Check out deals in the Deals Section with countdown timers.
 Header contains navigation, search, cart, and user menu options.
 
 Future Improvements
-
 Add checkout and payment integration
 Implement order history for users
 Add user profile management
