@@ -12,7 +12,7 @@
 - Filtering, sorting, and search functionality
 - Product cards with wishlist, quick view, and add-to-cart options
 
-### Shopping Cart
+**Shopping Cart**
 - Cart state managed with `CartContext`
 - Add, remove, and update products in the cart
 - Cart dropdown accessible from header
