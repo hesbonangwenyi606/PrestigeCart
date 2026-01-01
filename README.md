@@ -80,8 +80,7 @@ cd PrestigeCart
 ## Install dependencies:
 npm install
 
-Set up Supabase:
-
+## Set up Supabase:
 Create a Supabase project
 
 ## Add a .env file in the root:
