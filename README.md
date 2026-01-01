@@ -72,7 +72,7 @@ src/
 
 ## Installation
 
-## Clone the repository:
+**Clone the repository:**
 ```bash
 git clone <your-repo-url>
 cd PrestigeCart
