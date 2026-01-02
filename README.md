@@ -63,7 +63,7 @@ src/
 **Clone the repository:**
 ```bash 
 
-git clone <git@github.com:hesbonangwenyi606/PrestigeCart.git
+git clone git@github.com:hesbonangwenyi606/PrestigeCart.git
 cd PrestigeCart
 
 ## Install dependencies:
