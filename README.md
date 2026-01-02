@@ -64,6 +64,24 @@ src/
 ```bash 
 
 git clone git@github.com:hesbonangwenyi606/PrestigeCart.git*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8
 cd PrestigeCart
 
 ## Install dependencies:
