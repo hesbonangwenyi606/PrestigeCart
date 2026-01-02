@@ -61,6 +61,7 @@ src/
 
 ## Installation
 **Clone the repository:**
+
 **git clone git@github.com:hesbonangwenyi606/PrestigeCart.git**
 cd PrestigeCart
 
